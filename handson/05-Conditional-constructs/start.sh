@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+./sheet.sh "Lesson 05: Conditional Constructs"
+echo -e "Build in in bash:"
+echo -e "Build in:\033[0;32m
+    if
+    case
+    select
+    (( expression ))
+    [[ ]]\033[0m"
+
+echo -e "\nExamples:
+\033[0;32mif:\033[0m
+    \033[0;35mif\033[0m [[ test-commands ]]; \033[0;35mthen\033[0m
+        consequent-commands;
+    \033[0;35melif\033[0m [[ more-test-commands ]]; \033[0;35mthen\033[0m
+        more-consequents;
+    \033[0;35melse\033[0m
+        consequent-commands;
+    \033[0;35mfi\033[0m
+
+\033[0;32mcase:\033[0m
+    \033[0;35mcase\033[0m word \033[0;35min\033[0m
+        option1 | option 2 ) 
+            echo -n \"options\"
+            ;;
+        * ) 
+            echo -n \"default\"
+            ;;
+    \033[0;35mesac\033[0m
+
+\033[0;32mselect:\033[0m
+    \033[0;35mselect\033[0m x \033[0;35min\033[0m *; \033[0;35mdo\033[0m
+        echo you picked \$x \(\$REPLY\)
+    \033[0;35mdone\033[0m"
+
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 1 ]' -n1 key
