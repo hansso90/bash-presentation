@@ -3,7 +3,7 @@
 #Variables
 set -o errexit
 set -o pipefail
-_max_sheets
+_max_sheets=2
 
 #Actually code
 ./sheet.sh "Lesson 03: functions"
@@ -21,7 +21,7 @@ Call just:
     function_name [args1 args2 args3....]"
     
 
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 2 ]' -n1
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ '$_max_sheets' ]' -n1
 ./sheet.sh "Lesson 03: functions:"
 echo -e "
 Return functions
@@ -37,4 +37,4 @@ echo -e "
 Common Mistakes:
     - Fault: foo() {echo \"hello world\";} correct: foo() { echo \"hello world\";} use a space agter a bracket
 "
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 2 \ 2 ]' -n1
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 2 \ '$_max_sheets' ]' -n1

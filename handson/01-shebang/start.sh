@@ -3,6 +3,7 @@
 #variables
 set -o errexit
 set -o pipefail
+_max-sheets=1
 
 #actually code
 ./sheet.sh "Lesson 1: Shebang"
@@ -16,4 +17,4 @@ Examples:
     #!/usr/bin/env bash (use this one)
     #!/usr/bin/env python (or this)\033[0m 
 Last two to look at the environment of the system and look at the first program mentioned in the PATH variable."
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 1 ]' -n1 
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ '$_max_sheets' ]' -n1 

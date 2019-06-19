@@ -40,7 +40,7 @@ echo -e "Let's test this in bash...
 
 \033[0;32menv:\033[0m
 Step 1: Setup
-    create ./example.sh << EOF 
+    create ./example.sh << \"EOF\" 
         \033[0;32m#!/usr/bin/env bash\033[0m
         \033[0;33mecho\033[0m \"From example.sh: '\$y'\" 
     EOF"
@@ -59,7 +59,7 @@ read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 3 
 ./sheet.sh "Lesson 02: variables"
 echo -e "\033[0;32mdeclare:\033[0m
 Step 1: Setup
-    create ./example.sh << EOF
+    create ./example.sh << \"EOF\"
         \033[0;32m#!/usr/bin/env bash\033[0m
         \033[0;33mecho\033[0m \"From example.sh: '\$z'\"
     EOF"
@@ -80,7 +80,7 @@ read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 4 
 
 echo -e "\033[0;32mexport:\033[0m
 Step 1: Setup
-    create ./example.sh << EOF 
+    create ./example.sh << \"EOF\" 
         \033[0;32m#!/usr/bin/env bash\033[0m
         \033[0;33mecho\033[0m \"From example.sh: '\$q'\"
     EOF"

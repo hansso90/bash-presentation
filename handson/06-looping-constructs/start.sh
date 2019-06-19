@@ -33,6 +33,7 @@ echo -e "\nFor Example:
     \033[0;35mdone\033[0m"
 echo -e "
 Common Mistakes:
-    - for f in *; do echo \"\$f\" done <-- forget the ; for line break "
+    - for f in *; do echo \"\$f\" done <-- forget the ; for line break 
+    - for f in \$@; do x; done <-- Need to dubble qoute the in variable(\$@) else it cause word splitting if there is a space in the value.
 
 read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 4 \ 4 ]' -n1
