@@ -14,4 +14,4 @@ echo -e "\t#!/bin/sh"
 echo -e "\t#!/usr/bin/env bash"
 echo -e "\t#!/usr/bin/env python\033[0m "
 echo -e "Last two to look at the environment of the system and look at the first program mentioned in the PATH variable."
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 1 ]' -n1 key
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 1 ]' -n1 

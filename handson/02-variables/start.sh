@@ -5,8 +5,8 @@ set -o errexit
 set -o pipefail
 
 #set current dir
-MY_PATH=`dirname "$0"`
-MY_PATH=`( cd "$MY_PATH" && pwd )`
+MY_PATH=$(dirname "$0")
+MY_PATH=$( cd "$MY_PATH" && pwd )
 
 #actually code
 ./sheet.sh "Lesson 02: variables"
@@ -18,18 +18,18 @@ echo -e "\033[0;32m\t set"
 echo -e "\t env"
 echo -e "\t declare"
 echo -e "\t export\033[0m"
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 4 ]' -n1 key
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 1 \ 5 ]' -n1
 
 ./sheet.sh "Lesson 02: variables"
 echo -e "\033[0;32mSet\033[0m"
-echo -e "\t Doesn't set shell nor environment variables"
+echo -e "\t Doesn't set shell nor environment variables (Misleading windows setting env.)"
 echo -e "\033[0;32mEnv\033[0m"
 echo -e "\t Can set environment variables for a single command"
 echo -e "\033[0;32mDeclare\033[0m"
 echo -e "\t Sets shell variables"
 echo -e "\033[0;32mExport\033[0m"
 echo -e "\t Makes shell variables environment variables"
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 2 \ 4 ]' -n1 key
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 2 \ 5 ]' -n1
 
 ./sheet.sh "Lesson 02: variables"
 echo -e "Let's test this in bash...\n"
@@ -45,7 +45,7 @@ echo -e "env y=5 ./example.sh"
 env y=5 ./example.sh
 echo -e "Parent script \$y: $y"
 rm example.sh
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 3 \ 4 ]' -n1 key
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 3 \ 5 ]' -n1
 
 ./sheet.sh "Lesson 02: variables"
 echo -e "\033[0;32mdeclare:\033[0m"
@@ -64,5 +64,10 @@ export q=6
 echo -e "Parent script \$q: $q"
 rm example.sh
 
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 4 \ 5 ]' -n1
+./sheet.sh "Lesson 02: variables"
+echo -e "
+Common Mistakes:
+    - Spaces arround = sign to assign a value, correct: var=x"
 
-read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 4 \ 4 ]' -n1 key
+read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 5 \ 5 ]' -n1
