@@ -3,6 +3,7 @@
 #Variables
 set -o errexit
 set -o pipefail
+_max_sheets
 
 #Actually code
 ./sheet.sh "Lesson 03: functions"
