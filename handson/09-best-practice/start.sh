@@ -52,7 +52,12 @@ read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 3 
 echo -e "
 Make life easier to create your own script and add them to \$PATH
     add this line to ~/.bashrc:
-        \033[0;33mexport\033[0m \033[0;36mPATH\033[0m=\033[0;34m\$PATH\033[0m:/c/Users/M64B562/scripts
-And define your own script to use them to develop faster."
+        \033[0;33mexport\033[0m \033[0;36mPATH\033[0m=\033[0;34m\$PATH\033[0m:/c/Users/XXXXXXXXX/scripts
+
+    When you have got a script copy this to your scripts path with the command:
+        cp example.sh /c/Users/XXXXXXXXX/scripts/example *
+
+    * Notice i have stip down the extension of the file..
+"
 
 read -rsp $'\nPress any key to continue with the lesson.... \t\t\t\t Sheet: [ 4 \ '$_max_sheets' ]' -n1

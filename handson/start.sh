@@ -4,14 +4,15 @@ set -o errexit
 set -o pipefail
 
 clear
-echo "Best practice of Bash."
+
 PS3='Please enter your choice to of a subject: '
 dirs=(*/)
 dirs+=("Exit")
-echo test;
 
 while true; do
     clear
+    cat banner.txt
+    echo -e "\n"
     select opt in "${dirs[@]}"; do
         case $opt in
             Exit)

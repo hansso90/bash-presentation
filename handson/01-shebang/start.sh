@@ -3,7 +3,7 @@
 #variables
 set -o errexit
 set -o pipefail
-_max-sheets=1
+_max_sheets=1
 
 #actually code
 ./sheet.sh "Lesson 1: Shebang"
