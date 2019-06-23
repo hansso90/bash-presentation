@@ -87,7 +87,7 @@ Step 1: Setup
 echo -e "#!/usr/bin/env bash \n\n echo \"From example.sh: '\$q'\"" > example.sh
 echo -e "
 Step 2: Execute 
-    export z=6"
+    export q=6"
     export q=6 
 echo -e "
 Step 3: Results

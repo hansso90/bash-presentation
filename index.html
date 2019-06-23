@@ -25,13 +25,393 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>BASH</h1>
-					<p>Bourne Again Shell, renew format of Bourne Shell (sh).</p>
+					<section>
+						<h1>BASH</h1>
+						<p>Bourne Again Shell, renew format of Bourne Shell (sh).</p>
+					</section>
+					<section>
+						<h2>Presentation also in bash</h2>
+						<p>
+							Yeahhhhh, let see it in action....
+							<pre><code data-trim data-noescape>
+								cd handson
+								./start.sh
+							</code></pre>
+						</p> 
+					</section>
 				</section>
 				<section>
-					<p>
-					yeahhhhhh blah blah, let's see it in action...
-					</p>
+					<section>
+						<h2>Shebang</h2>
+						<p>Shebang is the first line of interpreter</p>
+						<pre><code data-trim data-noescape>
+							#!interpreter [optional-arg]
+						</code></pre>
+					</section>
+					<section>
+						<h2>Shebang</h2>
+						<p>
+							Examples:
+							<ul>
+								<li>#!/bin/bash</li>
+								<li>#!/bin/sh</li>
+								<li>#!/usr/bin/env bash</li>
+								<li>#!/usr/bin/env python</li>
+							</ul>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Variables</h3>
+						<p>Let's focus on two types of variables:
+							<ul>
+								<li>Environment</li>
+								<li>Shell</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<p>
+							How do you set your variables?
+						</p>
+					</section>
+					<section>
+						<h3>Env</h3>
+						<pre>
+							<code data-trim data-noescape>
+								#env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
+								env y=5 ./example.sh
+							</code>
+						</pre>
+						<p>Can set environment variables for a single command</p>
+					</section>
+					<section>
+						<h3>Declare</h3>
+						<pre>
+							<code data-trim data-noescape>
+								#declare [-aAfFgilnrtux] [-p] [NAAM[=WAARDE] ...]
+								declare z=6
+							</code>
+						</pre>
+						<p>Sets shell variables</p>
+					</section>
+					<section>
+						<h3>Export</h3>
+						<pre>
+							<code data-trim data-noescape>
+								#export [-fn] [NAAM[=WAARDE] ...]
+								export q=6
+							</code>
+						</pre>
+						<p>Makes shell variables environment variables</p>
+					</section>
+					<section>
+						<h3>Common mistakes:</h3>
+						<ul>
+							<li>Spaces arround = sign to assign a value, correct: var=x</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Functions</h2>
+						<p>Create functions in bash to make life easier.</p>
+					</section>
+					<section>
+						Two way's of writing:
+						<pre>
+							<code data-trim data-noescape> 
+								# Define:
+								function_name() {
+									echo "function_name"
+								}
+
+								function function_name {
+									echo "function_name"
+								}
+
+								# Call
+								function_name [args1 args2 args3....]
+							</code>
+						</pre>
+					</section>
+					<section>
+						Return functions:
+						<pre>
+							<code data-trim data-noescape> 
+								function_name() { 
+									echo "function1 
+								}	 
+						
+								function_name() { 
+									local function=5 #local variable only inside this function
+									function2=5 #variable set outside
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Common mistakes:</h3>
+						<p>
+							Fault:
+							<pre><code data-trim data-noescape>foo() {echo "hello world";}</code></pre>
+							Correct:
+							<pre><code data-trim data-noescape>foo() { echo "hello world";}</code></pre>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Array's</h2>
+						<p>
+							Indexed array(default):
+							<pre><code data-trim data-noescape>declare -a arrayName</code></pre>
+						</p>
+						<p>
+							Associative arrays
+							<pre><code data-trim data-noescape>declare -A arrayName</code></pre>
+						</p>
+					</section>
+					<section>
+						<h2>How to use a array:</h2>
+						<p>
+							<pre><code data-trim data-noescape>
+								echo "Array ${array[*]}: test1 test2 test3 test4"
+								echo "Array ${#array[*]}: 4"
+								echo "Array ${array[1]}: test2"
+							</code></pre>
+						</p>
+					</section>
+					<section>
+						<h3>Common mistakes:</h3>
+						<p>
+							Fault:
+							<pre><code data-trim data-noescape>array=( \$var )</code></pre> 
+							Correct: <br />
+							<pre><code data-trim data-noescape>
+								# if single element use:
+								array=( \"\$var\" )
+							
+								# if multiple elements:
+								mapfile -t array <<< "$var"
+
+								# or
+								IFS=" " read -r -a array <<< "$var"
+							</code></pre>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+					<h2>Conditional Constructs</h2>
+					<ul>
+						<li>if</li>
+						<li>case</li>
+						<li>select</li>
+						<li>(( expression ))</li>
+						<li>[[ expression ]]</li>
+					</ul>
+					</section>
+					<section>
+						<h3>Example if:</h3>
+						<pre><code data-trim data-noescape>
+							if [[ test-commands ]]; then
+								consequent-commands;
+							elif [[ more-test-commands ]]; then
+								more-consequents;
+							else
+								consequent-commands;
+							fi"
+						</code></pre>
+					</section>
+					<section>
+						<h3>Example case:</h3>
+						<pre><code data-trim data-noescape>
+							case word in
+								option1 | option 2 ) 
+									echo -n "options"
+									;;
+								* ) 
+									echo -n "default"
+									;;
+							esac
+						</code></pre>
+					</section>
+					<section>
+						<h3>Example select:</h3>
+						<pre><code data-trim data-noescape>
+							select x in *; do
+								echo you picked $x ($REPLY)
+							done"
+						</code></pre>
+					</section>
+					<section>
+							<h3>Common Mistakes:</h3>
+							<ul>
+								<li>Use spaces arround the block code</li>
+								<li>Output of commands catch them in dubble quotes, bash is all Strings: Correct: if [ "$(whoami)" = "root" ]; then....</li>
+								<li>grouping expressions use (..) Fault: [[ [ a || b ] && c ]] correct: [[ ( a || b ) && c ]]"</li>
+							</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Looping Constructs</h2>
+						<ul>
+							<li>until</li>
+							<li>while</li>
+							<li>for (x2)</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Example until:</h3>
+						<pre><code data-trim data-noescape>
+							until test-commands; do 
+								consequent-commands; 
+							done
+						</code></pre>
+					</section>
+					<section>
+						<h3>Example while:</h3>
+						<pre><code data-trim data-noescape>
+							while test-commands; do 
+								consequent-commands; 
+							done
+						</code></pre>
+					</section>
+					<section>
+						<h3>Example while:</h3>
+						<pre><code data-trim data-noescape>
+						    for name [ [in [words …] ] ; do 
+								commands; 
+							done
+							
+							for (( expr1 ; expr2 ; expr3 )) ; do 
+								commands ; 
+							done
+						</code></pre>
+					</section>
+					<section>
+						<h3>Common Mistakes:</h3>
+						<ul>
+							<li>for f in *; do echo \"\$f\" done -- forget the ; for line break</li>
+							<li>for f in \$@; do x; done -- Need to dubble qoute the in variable(\$@) else it cause word splitting if there is a space in the value.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h3>Menu</h3>
+					<pre><code data-trim data-noescape>
+						# Loop until all parameters are used up
+						while [ "$1" != "" ]; do
+							#DEBUG: echo \"first param: \$1, second parm: \$2\"
+							case $1 in
+								--debug        )
+										debug=1
+										shift 1
+										;;
+								-data | --data )
+										data=$2
+										shift 2
+										;;
+								import )
+										action=import
+										shift
+										;;
+								--help )           
+										usage
+										exit
+										;;
+								* )     
+										usage
+										exit 1
+							esac
+						done
+					</code></pre>
+				</section>
+				<section>
+					<section>
+						<h2>Shellcheck</h2>
+						<p>Shellcheck https://www.shellcheck.net/</p>
+					</section>
+					<section>
+						<h3>Shellcheck - installation</h3>
+						<p>
+							How to install shellcheck:
+							<ul>
+								<li>Windows</li>
+								<ul>
+									<li>choco install shellcheck</li>
+								</ul>
+								<li>OS X</li>
+								<ul>
+									<li>brew install shellcheck</li>
+								</ul>
+								<li>Linux</li>
+								<ul>
+									<li>apt-get install shellcheck (Debian)</li>
+									<li>yum install shellcheck (EPEL)</li>
+								</ul>
+								
+							</ul>
+						</p>
+					</section>
+					<section>
+						<p>See the wiki of shellcheck for explaining some cases</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Best Practice - SET</h2>
+						<p>
+							By default shell scripts doesn't exit if a error occured from a other script.
+							With Set you can fixed that problem:
+							<ul>
+								<li>set -o errexit -- error will be thrown up.</li>
+								<li>set -o pipefail -- error will be thrown if a pipe fails.</li>
+								<li>set -o xtrace -- debug, show every command that runs.</li>
+								<li>set -o nounset -- Fails if variable is not declared.</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h3>Best Practice - Design</h3>
+						<ul>
+							<li>!#shebang</li>
+							<li>define variables</li>
+							<li>define functions</li>
+							<li>define menu</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Best Practice - Naming</h3>
+						<p>Variable naming:</p>
+						<ul>
+							<li>use UPPERCASE; ENV_VARIABLE</li>
+							<li>use lowercase; local variable</li>
+						</ul>
+						<p>Private functions:</p>
+						<ul>
+							<li>_function_name()</li>
+							<li>_variable</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Best Practice - create scripts</h3>
+							Make life easier to create your own script and add them to \$PATH
+							add this line to ~/.bashrc:
+							<pre><code data-trim data-noescape>
+								export PATH=$PATH:/c/Users/XXXXXXXXX/scripts
+							</code></pre>
+						
+							When you have got a script copy this to your scripts path with the command:
+							<pre><code data-trim data-noescape>
+								cp example.sh /c/Users/XXXXXXXXX/scripts/example *
+							</code></pre>
+						
+							* Notice i have stip down the extension of the file..
+					</section>
 				</section>
 			</div>
 		</div>
