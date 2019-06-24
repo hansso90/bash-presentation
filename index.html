@@ -78,33 +78,33 @@
 					</section>
 					<section>
 						<h3>Env</h3>
+						<p>Can set environment variables for a single command</p>
 						<pre>
 							<code data-trim data-noescape>
 								#env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
 								env y=5 ./example.sh
 							</code>
 						</pre>
-						<p>Can set environment variables for a single command</p>
 					</section>
 					<section>
 						<h3>Declare</h3>
+						<p>Sets shell variables</p>
 						<pre>
 							<code data-trim data-noescape>
 								#declare [-aAfFgilnrtux] [-p] [NAAM[=WAARDE] ...]
 								declare z=6
 							</code>
 						</pre>
-						<p>Sets shell variables</p>
 					</section>
 					<section>
 						<h3>Export</h3>
+						<p>Makes shell variables environment variables</p>
 						<pre>
 							<code data-trim data-noescape>
 								#export [-fn] [NAAM[=WAARDE] ...]
 								export q=6
 							</code>
 						</pre>
-						<p>Makes shell variables environment variables</p>
 					</section>
 					<section>
 						<h3>Common mistakes:</h3>
@@ -187,11 +187,11 @@
 						<h3>Common mistakes:</h3>
 						<p>
 							Fault:
-							<pre><code data-trim data-noescape>array=( \$var )</code></pre> 
+							<pre><code data-trim data-noescape>array=( $var )</code></pre> 
 							Correct: <br />
 							<pre><code data-trim data-noescape>
 								# if single element use:
-								array=( \"\$var\" )
+								array=( "$var" )
 							
 								# if multiple elements:
 								mapfile -t array <<< "$var"
@@ -250,8 +250,18 @@
 							<h3>Common Mistakes:</h3>
 							<ul>
 								<li>Use spaces arround the block code</li>
-								<li>Output of commands catch them in dubble quotes, bash is all Strings: Correct: if [ "$(whoami)" = "root" ]; then....</li>
-								<li>grouping expressions use (..) Fault: [[ [ a || b ] && c ]] correct: [[ ( a || b ) && c ]]"</li>
+								<li>Output of commands catch them in dubble quotes, bash is all Strings: Correct: 
+								<pre><code data-trim data-noescape>
+									if [ "$(whoami)" = "root" ]; then....
+								</code></pre></li>
+								<li>Grouping expressions use (..) Fault: 
+								<pre><code data-trim data-noescape>
+								//Fault: 
+								[[ [ a || b ] && c ]] 
+								//Correct:
+								[[ ( a || b ) && c ]]"
+								 </code></pre>
+								 </li>
 							</ul>
 					</section>
 				</section>
@@ -283,20 +293,26 @@
 					<section>
 						<h3>Example while:</h3>
 						<pre><code data-trim data-noescape>
-						    for name [ [in [words …] ] ; do 
-								commands; 
-							done
-							
-							for (( expr1 ; expr2 ; expr3 )) ; do 
-								commands ; 
-							done
+						for name [ [in [words …] ] ; do 
+							commands; 
+						done
+						
+						for (( expr1 ; expr2 ; expr3 )) ; do 
+							commands ; 
+						done
 						</code></pre>
 					</section>
 					<section>
 						<h3>Common Mistakes:</h3>
 						<ul>
-							<li>for f in *; do echo \"\$f\" done -- forget the ; for line break</li>
-							<li>for f in \$@; do x; done -- Need to dubble qoute the in variable(\$@) else it cause word splitting if there is a space in the value.</li>
+							<li>Forget the ; for line break
+							<pre><code data-trim data-noescape>
+							for f in *; do echo "$f" done
+							</code></pre></li>
+							<li>Need to dubble qoute the in variable(\$@) else it cause word splitting if there is a space in the value.
+							<pre><code data-trim data-noescape>
+							for f in \$@; do x; done
+							</code></pre></li>
 						</ul>
 					</section>
 				</section>
@@ -359,6 +375,7 @@
 					</section>
 					<section>
 						<p>See the wiki of shellcheck for explaining some cases</p>
+						<a href="https://github.com/koalaman/shellcheck/wiki">Wiki</a>
 					</section>
 				</section>
 				<section>
@@ -367,35 +384,34 @@
 						<p>
 							By default shell scripts doesn't exit if a error occured from a other script.
 							With Set you can fixed that problem:
-							<ul>
-								<li>set -o errexit -- error will be thrown up.</li>
-								<li>set -o pipefail -- error will be thrown if a pipe fails.</li>
-								<li>set -o xtrace -- debug, show every command that runs.</li>
-								<li>set -o nounset -- Fails if variable is not declared.</li>
-							</ul>
+							<pre><code data-trim data-noescape>
+							set -o errexit // error will be thrown up.
+							set -o pipefail // error will be thrown if a pipe fails.
+							set -o xtrace // debug, show every command that runs.
+							set -o nounset // Fails if variable is not declared.
+							</code></pre>
 						</p>
 					</section>
 					<section>
 						<h3>Best Practice - Design</h3>
-						<ul>
-							<li>!#shebang</li>
-							<li>define variables</li>
-							<li>define functions</li>
-							<li>define menu</li>
-						</ul>
+						<pre><code data-trim data-noescape>
+							!#shebang
+							Define variable with declare
+							Define functions
+							Define Menu
+						</code></pre>
 					</section>
 					<section>
 						<h3>Best Practice - Naming</h3>
-						<p>Variable naming:</p>
-						<ul>
-							<li>use UPPERCASE; ENV_VARIABLE</li>
-							<li>use lowercase; local variable</li>
-						</ul>
-						<p>Private functions:</p>
-						<ul>
-							<li>_function_name()</li>
-							<li>_variable</li>
-						</ul>
+						<pre><code data-trim data-noescape>
+						//Variable naming:
+						declare -x ENV_VARIABLE
+						declare shellvariable
+
+						// Private readable
+						_function_name() { echo "test"; }
+						_variable 
+						</code></pre>
 					</section>
 					<section>
 						<h3>Best Practice - create scripts</h3>
@@ -412,6 +428,10 @@
 						
 							* Notice i have stip down the extension of the file..
 					</section>
+				</section>
+				<section>
+					<h2>Questions?</h2>
+					<img alt="image here" width="20%" height="20%" src="https://i0.wp.com/paperfury.com/wp-content/uploads/2014/07/tumblr_mtlvm1cDHC1sv50pao1_250.gif?resize=278%2C320"/>
 				</section>
 			</div>
 		</div>
